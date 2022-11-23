@@ -10,9 +10,16 @@ import Popup from 'reactjs-popup';
 import ZoomCallCreationComponent from './ZoomCallCreationComponent';
 
 
-
+import axios from 'axios';
 
 function App() {
+
+  var customConfig = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
   const [open, setOpen] = useState(false);
   const [startDate, setstartDate] = useState<Date>(new Date());
   const [endDate, setendDate] = useState<Date>(new Date());
@@ -29,11 +36,20 @@ function App() {
       <Popup open={open} closeOnDocumentClick onClose={closeModal}>
         <div className="modal">
           <ZoomCallCreationComponent initialStart={startDate} initialEnd={endDate} closeFunction={closeModal}
-            onEventCreated={(start: Date, end: Date, topic: string) => {
+            onEventCreated={async (start: Date, end: Date, topic: string) => {
               console.log(start);
               console.log(end);
               console.log(topic);
               setOpen(false);
+              const meeting = { start: start, end: start, topic: topic };
+              axios.post('createZoomMeeting', meeting, customConfig)
+                .then(function (response: any) {
+                  console.log(response);
+                })
+                .catch(function (error: any) {
+                  console.log(error);
+                });
+
             }} />
         </div>
       </Popup>
