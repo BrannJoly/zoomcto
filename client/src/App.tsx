@@ -11,6 +11,9 @@ import ZoomCallCreationComponent from './ZoomCallCreationComponent';
 
 
 import axios from 'axios';
+var moment = require('moment-timezone');
+
+
 
 function App() {
 
@@ -41,7 +44,7 @@ function App() {
               console.log(end);
               console.log(topic);
               setOpen(false);
-              const meeting = { start: start, end: start, topic: topic };
+              const meeting = { start: start, end: end, topic: topic, tz: moment.tz.guess() };
               axios.post('createZoomMeeting', meeting, customConfig)
                 .then(function (response: any) {
                   console.log(response);
