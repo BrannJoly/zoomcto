@@ -1,0 +1,26 @@
+.modal {
+    font-size: 28px;
+    background: #ffffff;
+    padding: 100px;
+}
+
+.modal>.header {
+    width: 100%;
+    border-bottom: 1px solid gray;
+    font-size: 18px;
+    text-align: center;
+    padding: 5px;
+}
+
+.modal>.content {
+
+    padding: 10px 5px;
+}
+
+
+.modal>.button {
+
+    padding: 20px 20px;
+
+
+}

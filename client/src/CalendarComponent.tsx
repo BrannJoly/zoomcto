@@ -1,30 +1,38 @@
 import { useCallback } from "react";
 import PropTypes from "prop-types";
 import { Calendar, Views, DateLocalizer, SlotInfo } from "react-big-calendar";
-
+import { momentLocalizer } from "react-big-calendar";
+import moment from "moment";
 import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop";
 
 const DragAndDropCalendar = withDragAndDrop(Calendar);
 
-export default function DnDOutsideResource({ localizer }: { localizer: any }) {
+const localizer = momentLocalizer(moment);
+
+
+interface CalendarProps {
+    onEventCreated: (start: Date, end: Date) => void
+}
+
+
+export default function DnDOutsideResource({ onEventCreated }: CalendarProps) {
     const newEvent = useCallback((event: SlotInfo) => {
+        onEventCreated(event.start, event.end);
 
-        console.log(event.start);
-        console.log(event.end);
-
-    }, []);
+    }, [onEventCreated]);
 
     return (
-
         <div className="height600">
             <DragAndDropCalendar
                 defaultView={Views.WEEK}
                 localizer={localizer}
                 onSelectSlot={newEvent}
+
                 resizable
                 selectable
             />
         </div>
+
     );
 }
 DnDOutsideResource.propTypes = {
