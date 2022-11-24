@@ -21,8 +21,8 @@ export default function ZoomCallCreationComponent({ onEventCreated, initialStart
 
     const [eventDate, seteventDate] = useState(initialStart);
 
-    const [startTime, setstartTime] = useState(`${initialStart.getHours()}:${initialStart.getMinutes()}`);
-    const [endTime, setendTime] = useState(`${initialEnd.getHours()}:${initialEnd.getMinutes()}`);
+    const [startTime, setStartTime] = useState(`${initialStart.getHours()}:${initialStart.getMinutes()}`);
+    const [endTime, setEndTime] = useState(`${initialEnd.getHours()}:${initialEnd.getMinutes()}`);
     const [topic, setTopic] = useState("Objet");
 
     return (<Fragment>
@@ -30,10 +30,10 @@ export default function ZoomCallCreationComponent({ onEventCreated, initialStart
             <DatePicker onChange={seteventDate} value={eventDate} />
         </div>
         <div className="content" >
-            <TimePicker disableClock={true} onChange={(e: any) => setstartTime(e)} value={startTime} />
+            <TimePicker disableClock={true} onChange={(e: any) => setStartTime(e)} value={startTime} />
         </div>
         <div className="content" >
-            <TimePicker disableClock={true} onChange={(e: any) => setendTime(e)} value={endTime} />
+            <TimePicker disableClock={true} onChange={(e: any) => setEndTime(e)} value={endTime} />
         </div>
         <div className="content" >
             <textarea value={topic} onChange={e => setTopic(e.target.value)} />

@@ -9,11 +9,9 @@ const DragAndDropCalendar = withDragAndDrop(Calendar);
 
 const localizer = momentLocalizer(moment);
 
-
 interface CalendarProps {
     onEventCreated: (start: Date, end: Date) => void
 }
-
 
 export default function DnDOutsideResource({ onEventCreated }: CalendarProps) {
     const newEvent = useCallback((event: SlotInfo) => {
@@ -27,12 +25,10 @@ export default function DnDOutsideResource({ onEventCreated }: CalendarProps) {
                 defaultView={Views.WEEK}
                 localizer={localizer}
                 onSelectSlot={newEvent}
-
                 resizable
                 selectable
             />
         </div>
-
     );
 }
 DnDOutsideResource.propTypes = {
