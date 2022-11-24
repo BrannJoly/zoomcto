@@ -22,7 +22,7 @@ export default function DnDOutsideResource({ onEventCreated }: CalendarProps) {
     }, [onEventCreated]);
 
     return (
-        <div className="height600">
+        <div className="height600" data-testid="calendar" >
             <DragAndDropCalendar
                 defaultView={Views.WEEK}
                 localizer={localizer}
