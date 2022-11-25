@@ -1,4 +1,3 @@
-import e from 'express';
 import express from 'express';
 var moment = require('moment-timezone');
 
@@ -52,13 +51,10 @@ app.post('/createZoomMeeting', async (req, res) => {
 
         res.send('created successfully');
     } catch (error) {
+
         console.log(error.message);
-
-
+        return res.status(500).json({ error: error.message });
     }
-
-
-
 });
 
 app.listen(port, () => {
